@@ -1,7 +1,7 @@
 # persephoneCollision
 Simple, collision system for unity. It is simple, fast, easy to use. For custom purposes. 
 
-<img src="https://github.com/OzgeKocaoglu/persephoneCollision/blob/main/Outsource/repository.png" alt="logo" width="500" height="auto" />
+<img src="https://github.com/OzgeKocaoglu/persephoneCollision/blob/main/Outsource/repository.png" alt="logo" width="600" height="auto" />
 
 
  <p>
