@@ -56,4 +56,4 @@ public CollisionBox collisionBox;
 
 # What will be in the future?
 I'm gonna add new collision types like sphere etc.
-I will add editor handles to edit more efficite.
+I will add editor handles to edit more efficient.
