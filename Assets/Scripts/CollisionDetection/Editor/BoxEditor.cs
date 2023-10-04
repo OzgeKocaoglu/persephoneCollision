@@ -56,6 +56,13 @@ namespace Persephone {
     private void OnSceneGUI() 
     {
       //TODO : size handles will be implement
+      var color = new Color(1, 0.8f, 0.4f, 1);
+      Handles.color = color;
+      float size = HandleUtility.GetHandleSize(box.center) * 0.5f;
+      Vector3 snap = Vector3.one * 0.5f;
+      Handles.FreeMoveHandle(box.center + new Vector3(0, box.size.y / 2f, 0 ), Quaternion.Euler(Vector3.up), 0.1f, snap, Handles.CubeHandleCap);
+      GUI.color = color;
+
     }
   }
 }
