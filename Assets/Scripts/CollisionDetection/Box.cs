@@ -24,15 +24,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-// ---------------------------------------------------------------------------
 namespace Persephone {
 
-  // -------------------------------------------------------------------------
   [ExecuteAlways]
   [System.Serializable]
   public class Box : MonoBehaviour
@@ -74,7 +71,6 @@ namespace Persephone {
       }
     }
 
-    // -------------------------------------------------------------------------
     public IEnumerable<Vector3> corners {
       get {
         yield return nearBottomRight;
@@ -89,38 +85,31 @@ namespace Persephone {
     }
 
 
-    // -----------------------------------------------------------------------
     [SerializeField] Vector3 _size = new Vector3(1,1,1);
     [SerializeField] bool _active = true;
 
-    // -----------------------------------------------------------------------
     public bool isIntersect(Vector3 point) 
     {
       return intersectWithPoint(point);
     }
 
-    // -----------------------------------------------------------------------
     public bool isIntersect(Box box) 
     {
       return intersects(box);
     }
 
-    // -----------------------------------------------------------------------
     protected virtual void onUpdate() 
     { 
     }
 
-    // -----------------------------------------------------------------------
     protected virtual void onEnable() 
     {
     }
 
-    // -----------------------------------------------------------------------
     protected virtual void onDisable() 
     {
     }
 
-    // -----------------------------------------------------------------------
     void Update() 
     {
       if (Application.isPlaying) {
@@ -128,7 +117,6 @@ namespace Persephone {
       }
     }
 
-    // -----------------------------------------------------------------------
     void OnDisable() 
     {
       if (Application.isPlaying) {
@@ -136,7 +124,6 @@ namespace Persephone {
       }
     }
 
-    // -----------------------------------------------------------------------
     void OnEnable() 
     {
       if (Application.isPlaying) {
@@ -144,7 +131,6 @@ namespace Persephone {
       }
     }
     
-    // -----------------------------------------------------------------------
     bool intersectWithPoint(Vector3 point) 
     {
       bool intersected = false;
@@ -156,7 +142,6 @@ namespace Persephone {
       return intersected;
     }
 
-    // -----------------------------------------------------------------------
     bool intersects(Box box) 
     {
       bool intersected = false;
@@ -171,7 +156,6 @@ namespace Persephone {
     }
 
 #if UNITY_EDITOR
-    // -----------------------------------------------------------------------
     public virtual void OnDrawGizmos() 
     {
       Gizmos.color = Color.red;

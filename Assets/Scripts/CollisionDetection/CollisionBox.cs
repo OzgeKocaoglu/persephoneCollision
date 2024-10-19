@@ -26,9 +26,7 @@ using UnityEngine;
 using System.Linq;
 
 
-// -------------------------------------------------------------------------
 namespace Persephone {
-  // -------------------------------------------------------------------------
   public class CollisionBox : Box
   {
     public delegate void CollisionBoxHandler(CollisionBox collidedBox);
@@ -37,7 +35,6 @@ namespace Persephone {
     static List<CollisionBox> boxesOnScene = new List<CollisionBox>();
     List<CollisionBox> collidedBoxes = new List<CollisionBox>();
 
-    // -----------------------------------------------------------------------
     protected override void onEnable() 
     {
       if (!boxesOnScene.Contains(this)) {
@@ -46,7 +43,6 @@ namespace Persephone {
       base.onEnable();
     }
 
-    // -----------------------------------------------------------------------
     protected override void onDisable()
     {
       if (boxesOnScene.Contains(this)) {
@@ -55,7 +51,6 @@ namespace Persephone {
       base.onDisable();
     }
 
-    // -----------------------------------------------------------------------
     protected override void onUpdate() 
     {
       List<CollisionBox> willAdd = new List<CollisionBox>();
@@ -71,7 +66,8 @@ namespace Persephone {
       for (int i = 0; i < willAdd.Count; i++) {
         var box = willAdd[i];
         if(!collidedBoxes.Contains(box)) {
-          collisionStart?.Invoke(this);
+          box.collisionStart?.Invoke(this);
+          collisionStart?.Invoke(box);
           collidedBoxes.Add(box);
         }
       }
@@ -81,13 +77,13 @@ namespace Persephone {
         if (!willAdd.Contains(box)) {
           collidedBoxes.Remove(box);
           collisionEnd?.Invoke(box);
+          box.collisionEnd?.Invoke(this);
         }
       }
 
       base.onUpdate();
     }
 
-    // -----------------------------------------------------------------------
     IEnumerable<CollisionBox> getAllCollisionBoxes()
     {
       return AppDomain.CurrentDomain.GetAssemblies().ToList().SelectMany(assembly => assembly.GetTypes()).Where(type => type.IsSubclassOf(typeof(CollisionBox))).Select(type => Activator.CreateInstance(type) as CollisionBox);
@@ -97,7 +93,6 @@ namespace Persephone {
     static Color boxBorderColor = new Color(0,1,0,1);
     static Color boxColor = new Color(0,1,0,0.5f);
 
-    // -----------------------------------------------------------------------
     public override void OnDrawGizmos() 
     {
       Gizmos.color = boxColor;
